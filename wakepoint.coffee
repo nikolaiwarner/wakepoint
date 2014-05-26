@@ -3,7 +3,7 @@ class window.wakepoint
     @buffer = options.buffer || 10  # ten minute buffer
     @target = options.target || { hour: 12, minute: 0 }
     @events = options.events || []
-    @streak = options.streak + @events.length
+    @streak = options.streak || @events.length
 
     # Nav ---------
     $('.show_settings').click () => @showSection('.settings')
@@ -21,7 +21,7 @@ class window.wakepoint
     # Streak --------
     for event in @events.reverse()
       html = "<li>" + new Date(event.time) + "</li>"
-      $('.streak ul').append html
+      $('.stats ul').append html
 
     @checkProgress()
     @sun()
