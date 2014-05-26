@@ -1,0 +1,157 @@
+body {
+  padding: 0px;
+  margin: auto 0px;
+  background: #f9e72d;
+  color: #444;
+  text-align: center;
+  font-size: 25px;
+  font-family: Helvetica, sans-serif;
+}
+
+input {
+  border: 1px solid #000;
+  background-color: #FFF799;
+  padding: 5px;
+}
+
+.nav_wrapper {
+  height: 55px;
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+}
+
+nav {
+  width: 800px;
+  margin: auto;
+  font-size: smaller;
+  color: #444;
+  text-align: right;
+  padding-top: 20px;
+
+  h1 {
+    float: left;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  a {
+    cursor: pointer;
+    margin: 10px;
+    margin-top: 20px;
+    font-size: 15px;
+  }
+}
+
+.wrapper {
+  width: 800px;
+  margin: auto;
+  position: relative;
+}
+
+section {
+  position: absolute;
+  width: 800px;
+  display: none;
+  margin-top: 90px;
+  padding: 10px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  .state {
+    display: none;
+  }
+
+  &.stats {
+    ul.events {
+      list-style: none;
+    }
+  }
+}
+
+h1 {
+  color:  #000;
+  font-size: 45px;
+  margin: 0px;
+  padding: 0px;
+}
+
+h2 {
+  color: #000;
+  font-size: 55px;
+}
+
+@-webkit-keyframes floating {
+  from {
+    -webkit-transform: rotate(-15deg);
+    -webkit-transform: scale(1.5);
+  }
+  to {
+    -webkit-transform: rotate(15deg);
+    -webkit-transform: scale(1);
+  }
+}
+
+.winner img {
+  width: 150px;
+  height: 150px;
+
+  animation: floating 1s infinite alternate backwards;
+  -webkit-animation: floating 1s infinite alternate backwards;
+}
+
+button {
+  padding: 15px;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 1px solid;
+  width: 150px;
+  height: 50px;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  border-color: #000;
+  border-radius: 2px;
+}
+
+.sun_wrapper {
+  position: absolute;
+
+  .sun {
+    width: 2000px;
+    height: 1000px;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+  }
+
+  .s {
+    position: absolute;
+    top: 0px;
+    width: 150px;
+    height: 600px;
+    background: url(images/bg.gif) repeat-x;
+  }
+}
+
+@media all and (max-width: 640px) {
+  nav {
+    text-align: center;
+  }
+
+  nav h1 {
+    float: none;
+  }
+
+  h2 {
+    font-size: 35px;
+  }
+
+  section {
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width: 300px;
+  }
+}

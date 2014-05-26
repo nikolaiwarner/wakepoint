@@ -7,22 +7,17 @@ body {
   font-size: 25px;
   font-family: Helvetica, sans-serif;
 }
-
-
 input {
   border: 1px solid #000;
   background-color: #FFF799;
   padding: 5px;
 }
-
-
 .nav_wrapper {
   height: 55px;
   width: 100%;
   position: absolute;
   z-index: 10;
 }
-
 nav {
   width: 800px;
   margin: auto;
@@ -31,28 +26,22 @@ nav {
   text-align: right;
   padding-top: 20px;
 }
-
-  nav h1 {
-    float: left;
-    cursor: pointer;
-    font-size: 15px;
-  }
-
-  nav a {
-    cursor: pointer;
-    margin: 10px;
-    margin-top: 20px;
-    font-size: 15px;
-  }
-
-
+nav h1 {
+  float: left;
+  cursor: pointer;
+  font-size: 15px;
+}
+nav a {
+  cursor: pointer;
+  margin: 10px;
+  margin-top: 20px;
+  font-size: 15px;
+}
 .wrapper {
   width: 800px;
   margin: auto;
   position: relative;
 }
-
-
 section {
   position: absolute;
   width: 800px;
@@ -62,27 +51,22 @@ section {
   padding-top: 40px;
   padding-bottom: 40px;
 }
-
-  section div {
-    display: none;
-  }
-
-
+section .state {
+  display: none;
+}
+section.stats ul.events {
+  list-style: none;
+}
 h1 {
-  color:  #000;
+  color: #000;
   font-size: 45px;
   margin: 0px;
   padding: 0px;
 }
-
-
 h2 {
   color: #000;
   font-size: 55px;
 }
-
-
-
 @-webkit-keyframes floating {
   from {
     -webkit-transform: rotate(-15deg);
@@ -93,19 +77,12 @@ h2 {
     -webkit-transform: scale(1);
   }
 }
-
-
 .winner img {
   width: 150px;
   height: 150px;
-
+  animation: floating 1s infinite alternate backwards;
   -webkit-animation: floating 1s infinite alternate backwards;
 }
-
-.winner {
-/*   -webkit-box-reflect: below 10px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.3))); */
-}
-
 button {
   padding: 15px;
   margin-top: 20px;
@@ -120,45 +97,34 @@ button {
   border-color: #000;
   border-radius: 2px;
 }
-
-button:active {
-}
-
 .sun_wrapper {
   position: absolute;
-/*   left: -50%; */
 }
-
-.sun {
+.sun_wrapper .sun {
   width: 2000px;
   height: 1000px;
   overflow: hidden;
   position: absolute;
-  top: 0px;/* 65px; */
+  top: 0px;
   left: 50%;
 }
-
-.s {
+.sun_wrapper .s {
   position: absolute;
   top: 0px;
   width: 150px;
   height: 600px;
   background: url(images/bg.gif) repeat-x;
 }
-
 @media all and (max-width: 640px) {
   nav {
     text-align: center;
   }
-
   nav h1 {
     float: none;
   }
-
   h2 {
     font-size: 35px;
   }
-
   section {
     margin-left: 10px;
     margin-right: 10px;

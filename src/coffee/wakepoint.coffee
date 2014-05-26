@@ -15,13 +15,14 @@ class window.wakepoint
     $('.checkin .goal').click(() => @checkIn())
 
     # Settings --------
-    $('.settings .save').click(() => @saveSettings())
+    $('.settings .save').click(() => @saveSettings(); @showSection('.main'))
     $('.settings .time').val(@decodeTarget())
 
     # Streak --------
     for event in @events.reverse()
       html = "<li>" + new Date(event.time) + "</li>"
       $('.stats ul').append html
+    $('.streak_count').text(@streak + ' day streak')
 
     @checkProgress()
     @sun()

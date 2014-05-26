@@ -1,89 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>wakepoint</title>
+!!!
+%html{lang: "en"}
+  %head
+    %title wakepoint
+    %link{href: "wakepoint.css", media: "all", rel: "stylesheet", type: "text/css"}
+  %body
+    .sun_wrapper
+      .sun
+    .nav_wrapper
+      %nav
+        %div
+          %h1.show_main
+            wakepoint
+            %br
+            %small.streak_count
+        %a.show_main Check In
+        %a.show_stats Statistics
+        %a.show_settings Settings
+    .wrapper
+      %section.main
+        .state.checkin
+          %h2 Good morning!
+          %p It's time to check in!
+          %button.goal I'm awake.
+        .state.early
+          %h2 You are early.
+          %p Go back to bed.
+        .state.late
+          %h2 You've slept in again.
+          %p Let's try again tomorrow!
+        .state.winner
+          %h2 Great job!
+          %p You woke up on time today.
+          %img.prespin{src: "images/trophy.gif"}
+        .state.firstday
+          %h2 Hi there, Champ!
+          %p Today's your first day of a long streak of early rising!
+          %p
+            Check back in tomorrow at
+            %span.target
+            to keep your streak going strong!
 
-		<link rel="stylesheet" type="text/css" media="all" href="wakepoint.css">
+      %section.stats
+        %h2 Streak
+        %h3.streak_count
+        %ul.events
 
-	</head>
-	<body>
-
-	 <div class='sun_wrapper'><div class='sun'></div></div>
-
-	 <div class="nav_wrapper">
-  	 <nav>
-  	   <div>
-    	   <h1 class='show_main'>wakepoint</h1>
-    	 </div>
-
-  	   <a class='show_main'>Check In</a>
-  	   <a class='show_stats'>Statistics</a>
-  	   <a class='show_settings'>Settings</a>
-  	 </nav>
-	 </div>
-
-	 <div class='wrapper'>
-  	 <section class='main'>
-  	   <div class='checkin'>
-      	 <h2>Good morning!</h2>
-      	 <p>It's time to check in!</p>
-      	 <!-- <textarea class='comment'></textarea> -->
-    	   <button class='goal'>I'm awake.</button>
-      </div>
-
-    	 <div class='early'>
-      	 <h2>You are early.</h2>
-      	 <p>Go back to bed.</p>
-    	 </div>
-
-       <div class='late'>
-      	 <h2>You've slept in again.</h2>
-      	 <p>Let's try again tomorrow!</p>
-    	 </div>
-
-    	 <div class='winner'>
-      	 <h2>Great job!</h2>
-      	 <p>You woke up on time today.</p>
-      	 <img src='images/trophy.gif' class='prespin' />
-    	 </div>
-
-    	 <div class='firstday'>
-      	 <h2>Hi there, Champ!</h2>
-      	 <p>Today's your first day of a long streak of early rising!</p>
-      	 <p>Check back in tomorrow at <span class='target'></span> to keep your streak going strong!</p>
-    	 </div>
-  	 </section>
-
-
-
-
-  	 <section class='stats'>
-  	   <h2>Streak</h2>
-       <ul></ul>
-       <p>Here's your stats:</p>
-  	 </section>
-
-
-
-      <section class='settings'>
-        <h2>Settings</h2>
-
-        <label>I'd like to wake up at:</label>
-        <input type='text' class='time' />
-
-        <br/>
-
-        <!-- <label>Hardcore Mode</label>
-        <input type='checkbox' class='hardcore' /> -->
-
-        <br/>
-        <button class='save'>Save</button>
-      </section>
-    </div>
-
-
-
-		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.min.js"></script>
-		<script type="text/javascript" src="wakepoint.js"></script>
-	</body>
-</html>
+      %section.settings
+        %h2 Settings
+        %label I'd like to wake up at:
+        %input.time{type: "text"}/
+        %br
+        %button.save Save
+    %script{src: "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"}
+    %script{src: "wakepoint.js", type: "text/javascript"}
