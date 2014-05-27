@@ -15,7 +15,7 @@ window.wakepoint = (function() {
     this.checkIn = __bind(this.checkIn, this);
     this.decodeTarget = __bind(this.decodeTarget, this);
     this.saveSettings = __bind(this.saveSettings, this);
-    var event, html, _i, _len, _ref;
+    this.updateUI = __bind(this.updateUI, this);
     this.buffer = options.buffer || 10;
     this.target = options.target || {
       hour: 12,
@@ -54,21 +54,29 @@ window.wakepoint = (function() {
         return _this.showSection('.main');
       };
     })(this));
-    $('.settings .time').val(this.decodeTarget());
-    _ref = this.events.reverse();
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      event = _ref[_i];
-      html = "<li>" + new Date(event.time) + "</li>";
-      $('.stats ul').append(html);
-    }
-    $('.streak_count').text(this.streak + ' day streak');
     this.checkProgress();
+    this.updateUI();
     this.sun();
   }
 
+  wakepoint.prototype.updateUI = function() {
+    var event, html, target_time, _i, _len, _ref;
+    target_time = this.decodeTarget();
+    $('span.target_time').text(" " + target_time + " ");
+    $('.settings input.target_time').val(target_time);
+    _ref = this.events.reverse();
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      event = _ref[_i];
+      $('.stats ul').empty();
+      html = "<li>" + new Date(event.time) + "</li>";
+      $('.stats ul').append(html);
+    }
+    return $('.streak_count').text(this.streak + ' day streak');
+  };
+
   wakepoint.prototype.saveSettings = function() {
     var hour, minute, target;
-    this.target = $('.settings .time').val();
+    this.target = $('.settings input.target_time').val();
     target = this.target.split(':');
     minute = parseInt(target[1].substr(0, 2), 10);
     hour = parseInt(target[0], 10);
@@ -86,13 +94,15 @@ window.wakepoint = (function() {
       minute = void 0;
     }
     if (hour !== void 0 && minute !== void 0) {
-      return localStorage['target'] = JSON.stringify(this.target = {
+      localStorage['target'] = JSON.stringify(this.target = {
         hour: hour,
         minute: minute
       });
     } else {
-      return console.log('BAD BAD');
+      console.log('BAD BAD');
     }
+    this.checkProgress();
+    return this.updateUI();
   };
 
   wakepoint.prototype.decodeTarget = function() {
@@ -152,7 +162,6 @@ window.wakepoint = (function() {
       $('.early').fadeIn();
     } else if (this.isWinner()) {
       $('.winner').fadeIn();
-      console.log('here');
       this.youWon();
     } else {
       $('.checkin').fadeIn();
@@ -169,8 +178,7 @@ window.wakepoint = (function() {
   };
 
   wakepoint.prototype.youWon = function() {
-    $('.winner img').addClass('spin');
-    return console.log('YOU WON');
+    return $('.winner img').addClass('spin');
   };
 
   wakepoint.prototype.targetTimeToday = function() {

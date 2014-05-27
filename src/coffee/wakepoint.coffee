@@ -5,30 +5,31 @@ class window.wakepoint
     @events = options.events || []
     @streak = options.streak || @events.length
 
-    # Nav ---------
     $('.show_settings').click () => @showSection('.settings')
     $('.show_stats').click () => @showSection('.stats')
     $('.show_main').click () => @showSection('.main')
     $('.sun').click () => $('section').slideUp('slow')
-
-    # Check In --------
     $('.checkin .goal').click(() => @checkIn())
-
-    # Settings --------
     $('.settings .save').click(() => @saveSettings(); @showSection('.main'))
-    $('.settings .time').val(@decodeTarget())
 
-    # Streak --------
+    @checkProgress()
+    @updateUI()
+    @sun()
+
+  updateUI: =>
+    target_time = @decodeTarget()
+    $('span.target_time').text(" #{target_time} ")
+    $('.settings input.target_time').val(target_time)
+
+    # Show streak
     for event in @events.reverse()
+      $('.stats ul').empty()
       html = "<li>" + new Date(event.time) + "</li>"
       $('.stats ul').append html
     $('.streak_count').text(@streak + ' day streak')
 
-    @checkProgress()
-    @sun()
-
   saveSettings: =>
-    @target = $('.settings .time').val()
+    @target = $('.settings input.target_time').val()
 
     target = @target.split(':')
     minute = parseInt(target[1].substr(0,2), 10)
@@ -52,6 +53,8 @@ class window.wakepoint
       )
     else
       console.log 'BAD BAD'
+    @checkProgress()
+    @updateUI()
 
   decodeTarget: =>
     (if @target.hour > 12 then @target.hour - 12 else @target.hour) + ":" + (if @target.minute < 10 then "0" + @target.minute else @target.minute) + (if @target.hour > 12 then "pm" else "am")
@@ -111,7 +114,6 @@ class window.wakepoint
     # You won today
     else if @isWinner()
       $('.winner').fadeIn()
-      console.log 'here'
       @youWon()
 
     # On Time
@@ -121,7 +123,7 @@ class window.wakepoint
     @showSection('.main')
 
   isWinner: =>
-    @events.length > 0 && ( @events[@events.length-1].datenum == @today().datenum)
+    @events.length > 0 && (@events[@events.length-1].datenum == @today().datenum)
 
   youLose: =>
     # Reset Events / Streak
@@ -129,7 +131,6 @@ class window.wakepoint
 
   youWon: =>
     $('.winner img').addClass 'spin'
-    console.log 'YOU WON'
 
   targetTimeToday: =>
     now = new Date()
@@ -148,7 +149,7 @@ class window.wakepoint
       @sAnim(n)
 
   sAnim: (n) =>
-    s = 500 + Math.abs((@today().time - @targetTimeToday()) / 1000) + n *10 #/
+    s = 500 + Math.abs((@today().time - @targetTimeToday()) / 1000) + n *10
     $('#s'+n).animate({ top: '-=100' }, s).animate({ top: '+=100' }, s, () => @sAnim(n) )
 
 

@@ -37,7 +37,7 @@
           %p Today's your first day of a long streak of early rising!
           %p
             Check back in tomorrow at
-            %span.target
+            %span.target_time
             to keep your streak going strong!
 
       %section.stats
@@ -48,7 +48,7 @@
       %section.settings
         %h2 Settings
         %label I'd like to wake up at:
-        %input.time{type: "text"}/
+        %input.target_time{type: "text"}
         %br
         %button.save Save
     %script{src: "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"}
